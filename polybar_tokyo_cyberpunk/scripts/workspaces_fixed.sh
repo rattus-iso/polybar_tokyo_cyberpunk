@@ -7,13 +7,14 @@ show_workspaces() {
     for i in $(seq 1 10); do
         name="$i"
         if [ "$FOCUSED" = "$name" ]; then
-            OUTPUT+="%{F#CE93D8} $name %{F-}"
+            OUTPUT+="%{F#CE93D8} ${name} "
         elif echo "$WS" | jq -e --arg n "$name" '.[] | select(.name==$n)' > /dev/null 2>&1; then
-            OUTPUT+="%{F#6A1B9A} $name %{F-}"
+            OUTPUT+="%{F#9C27B0} ${name} "
         else
-            OUTPUT+="%{F#333333} $name %{F-}"
+            OUTPUT+="%{F#555555} ${name} "
         fi
     done
+    OUTPUT+="%{F-}"
     echo "$OUTPUT"
 }
 
